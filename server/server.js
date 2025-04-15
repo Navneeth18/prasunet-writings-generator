@@ -11,7 +11,7 @@ const authRoutes = require('./APIs/authAPI');
 
 const cors = require('cors');
 app.use(cors({
-  origin: '*', // Allow all origins during development
+  origin: 'http://localhost:5173', // Only allow localhost client
   credentials: true
 }));
 
@@ -26,7 +26,7 @@ mongoose.connect(process.env.DBURL, {
 })
 .then(() => {
   console.log('Connected to MongoDB successfully');
-  app.listen(port, () => console.log(`Server running on port ${port}`));
+  app.listen(port, 'localhost', () => console.log(`Server running on port:${port}`));
 })
 .catch(err => {
   console.error('Database connection error:', err.message);
