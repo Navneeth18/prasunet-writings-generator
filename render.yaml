@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: prasunet-writings-generator-api
+    env: node
+    repo: https://github.com/Navneeth18/prasunet-writings-generator.git
+    buildCommand: cd server && npm install
+    startCommand: cd server && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        value: https://prasunet-writings-generator.onrender.com
+      - key: JWT_SECRET
+        sync: false
+      - key: DBURL
+        sync: false
+      - key: key1
+        sync: false
+      - key: key2
+        sync: false
+      - key: key3
+        sync: false
+      - key: key4
+        sync: false
+      - key: key5
+        sync: false
+
+  - type: web
+    name: prasunet-writings-generator
+    env: static
+    repo: https://github.com/Navneeth18/prasunet-writings-generator.git
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/dist
+    envVars:
+      - key: NODE_ENV
+        value: production

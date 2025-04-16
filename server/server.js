@@ -10,10 +10,15 @@ const userApp=require('./APIs/userAPI');
 const authRoutes = require('./APIs/authAPI');
 
 const cors = require('cors');
-app.use(cors({
-  origin: 'http://localhost:5173', // Only allow localhost client
+// Configure CORS based on environment
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production'
+    ? [process.env.FRONTEND_URL, /\.onrender\.com$/] // Allow Render domains and configured frontend URL
+    : 'http://localhost:5173', // Local development
   credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
 
 // port number
 const port=process.env.PORT || 4000;
@@ -26,7 +31,7 @@ mongoose.connect(process.env.DBURL, {
 })
 .then(() => {
   console.log('Connected to MongoDB successfully');
-  app.listen(port, 'localhost', () => console.log(`Server running on port:${port}`));
+  app.listen(port, () => console.log(`Server running on port:${port}`));
 })
 .catch(err => {
   console.error('Database connection error:', err.message);
