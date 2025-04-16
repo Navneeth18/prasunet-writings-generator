@@ -81,6 +81,46 @@ WriteCraft is an AI-powered creative writing platform that helps users generate 
 └── start-dev.sh            # Script to start both client and server
 ```
 
+## Deployment on Render
+
+This application is configured for easy deployment on Render.com.
+
+### Backend Deployment
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Use the following settings:
+   - **Environment**: Node
+   - **Build Command**: `cd server && npm install`
+   - **Start Command**: `cd server && node server.js`
+   - **Environment Variables**: Configure the following in the Render dashboard
+     - `NODE_ENV`: `production`
+     - `PORT`: `10000` (Render will automatically set the correct port)
+     - `FRONTEND_URL`: Your frontend URL (e.g., `https://writecraft.onrender.com`)
+     - `JWT_SECRET`: A secure random string
+     - `DBURL`: Your MongoDB connection string
+     - `key1` through `key5`: Your Gemini API keys
+
+### Frontend Deployment
+
+1. Create a new Static Site on Render
+2. Connect your GitHub repository
+3. Use the following settings:
+   - **Build Command**: `cd client && npm install && npm run build`
+   - **Publish Directory**: `client/dist`
+   - **Environment Variables**:
+     - `NODE_ENV`: `production`
+
+### Automatic Deployment with Blueprint
+
+Alternatively, you can use the `render.yaml` file at the root of the repository to deploy both services at once:
+
+1. Fork this repository
+2. Update the repository URL in `render.yaml`
+3. Create a new Blueprint on Render
+4. Connect your GitHub repository
+5. Configure the environment variables in the Render dashboard
+
 ## Getting Started
 
 ### Prerequisites

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: writecraft-api
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        value: https://writecraft.onrender.com
+      - key: JWT_SECRET
+        sync: false
+      - key: DBURL
+        sync: false
+      - key: key1
+        sync: false
+      - key: key2
+        sync: false
+      - key: key3
+        sync: false
+      - key: key4
+        sync: false
+      - key: key5
+        sync: false
