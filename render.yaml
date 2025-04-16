@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: prasunet-writings-generator-api
+    name: writings-generator-backend
     env: node
     repo: https://github.com/Navneeth18/prasunet-writings-generator.git
     buildCommand: cd server && npm install
@@ -11,7 +11,7 @@ services:
       - key: PORT
         value: 10000
       - key: FRONTEND_URL
-        value: https://prasunet-writings-generator.onrender.com
+        value: https://writings-generator-frontend.onrender.com
       - key: JWT_SECRET
         sync: false
       - key: DBURL
@@ -28,7 +28,7 @@ services:
         sync: false
 
   - type: web
-    name: prasunet-writings-generator
+    name: writings-generator-frontend
     env: static
     repo: https://github.com/Navneeth18/prasunet-writings-generator.git
     buildCommand: cd client && npm install && npm run build
