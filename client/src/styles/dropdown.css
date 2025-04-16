@@ -1,0 +1,154 @@
+/* Dropdown positioning and z-index fixes */
+
+/* Fix for native select dropdowns */
+select {
+  position: relative;
+  z-index: 5; /* Higher than normal content but lower than modals */
+}
+
+/* When select is focused/active, increase z-index to ensure dropdown appears above other elements */
+select:focus {
+  z-index: 30;
+}
+
+/* Fix for browser-rendered select dropdown options */
+select option {
+  background-color: white;
+  color: #333;
+  padding: 8px;
+}
+
+.dark select option {
+  background-color: #1f2937;
+  color: white;
+}
+
+/* Ensure select elements don't get cut off by container boundaries */
+.dropdown-select {
+  position: relative;
+  height: 42px; /* Fixed height to prevent layout shifts */
+}
+
+/* Custom styles to force select dropdowns to appear below */
+select.dropdown-select {
+  /* Reset any browser-specific styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add custom dropdown arrow */
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+  /* Force dropdown direction */
+  direction: ltr;
+}
+
+/* Dark mode arrow */
+.dark select.dropdown-select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  select.dropdown-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    text-overflow: '';
+    padding-right: 2.5rem;
+  }
+
+  .dark select.dropdown-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  }
+}
+
+/* Fix for Chrome */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select.dropdown-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    padding-right: 2.5rem;
+  }
+
+  .dark select.dropdown-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  }
+}
+
+/* Custom dropdown menus */
+.dropdown-menu {
+  position: absolute;
+  z-index: 50; /* Higher than most elements */
+  max-height: 200px; /* Prevent extremely long dropdowns */
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Ensure dropdowns don't extend beyond viewport */
+.dropdown-container {
+  position: relative;
+}
+
+/* For export and share dropdowns */
+.action-dropdown {
+  position: relative;
+}
+
+.action-dropdown-menu {
+  position: absolute;
+  z-index: 50;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* Default: Ensure the dropdown appears below the button */
+  top: 100%;
+  margin-top: 0.5rem;
+}
+
+/* For dropdowns that should appear above the button (export and share) */
+.action-dropdown-menu-up {
+  position: absolute;
+  z-index: 50;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  /* Position above the button */
+  bottom: 100%;
+  margin-bottom: 0.5rem;
+  right: 0;
+}
+
+/* For modals and overlays */
+.modal-overlay {
+  z-index: 100; /* Higher than dropdowns */
+}
+
+/* Custom scrollbar styling for dropdowns */
+.dropdown-menu::-webkit-scrollbar,
+.action-dropdown-menu::-webkit-scrollbar,
+.action-dropdown-menu-up::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track,
+.action-dropdown-menu::-webkit-scrollbar-track,
+.action-dropdown-menu-up::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb,
+.action-dropdown-menu::-webkit-scrollbar-thumb,
+.action-dropdown-menu-up::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5); /* gray-400 with opacity */
+  border-radius: 3px;
+}
+
+.dark .dropdown-menu::-webkit-scrollbar-thumb,
+.dark .action-dropdown-menu::-webkit-scrollbar-thumb,
+.dark .action-dropdown-menu-up::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 85, 99, 0.5); /* gray-600 with opacity */
+}
