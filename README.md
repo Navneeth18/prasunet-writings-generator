@@ -93,7 +93,7 @@ WriteCraft is an AI-powered creative writing platform that helps users generate 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/writecraft.git
+   git clone https://github.com/Navneeth18/prasunet-writings-generator.git
    cd writecraft
    ```
 
@@ -149,7 +149,7 @@ Or run them separately:
 ```bash
 # Start the server (from the server directory)
 cd server
-npm run dev
+nodemon server.js
 
 # Start the client (from the client directory)
 cd client
