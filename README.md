@@ -2,7 +2,7 @@
 
 WriteCraft is an AI-powered creative writing platform that helps users generate various types of content including poetry, short stories, quotes, social media captions, and more. The application uses Google's Gemini AI to create high-quality, customized content based on user preferences.
 
-![WriteCraft Logo](client/src/assets/logo.svg)
+
 
 ## Table of Contents
 
@@ -94,7 +94,7 @@ WriteCraft is an AI-powered creative writing platform that helps users generate 
 1. Clone the repository:
    ```bash
    git clone https://github.com/Navneeth18/prasunet-writings-generator.git
-   cd writecraft
+   cd prasunet-writings-generator
    ```
 
 2. Install dependencies for both client and server:
