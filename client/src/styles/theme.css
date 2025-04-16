@@ -1,0 +1,88 @@
+/* Custom theme colors */
+:root {
+  /* Light theme */
+  --color-primary-light: #6366f1; /* Indigo-500 */
+  --color-primary-hover-light: #4f46e5; /* Indigo-600 */
+  --color-secondary-light: #f97316; /* Orange-500 */
+  --color-accent-light: #ec4899; /* Pink-500 */
+  --color-background-light: #f9fafb; /* Gray-50 */
+  --color-card-light: #ffffff; /* White */
+  --color-text-light: #1f2937; /* Gray-800 */
+  --color-text-muted-light: #6b7280; /* Gray-500 */
+  --color-border-light: #e5e7eb; /* Gray-200 */
+  
+  /* Dark theme */
+  --color-primary-dark: #818cf8; /* Indigo-400 */
+  --color-primary-hover-dark: #6366f1; /* Indigo-500 */
+  --color-secondary-dark: #fb923c; /* Orange-400 */
+  --color-accent-dark: #f472b6; /* Pink-400 */
+  --color-background-dark: #111827; /* Gray-900 */
+  --color-card-dark: #1f2937; /* Gray-800 */
+  --color-text-dark: #f9fafb; /* Gray-50 */
+  --color-text-muted-dark: #9ca3af; /* Gray-400 */
+  --color-border-dark: #374151; /* Gray-700 */
+}
+
+/* Apply theme colors to Tailwind elements */
+.dark {
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  --tw-border-opacity: 1;
+  
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Focus styles for better accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+.dark *:focus-visible {
+  outline-color: var(--color-primary-dark);
+}
