@@ -12,22 +12,26 @@ export const CollectionProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { user, isSignedIn } = useAuth();
 
+  // Function to fetch collections that can be called from anywhere
+  const fetchCollections = async () => {
+    if (isSignedIn && user?._id) {
+      setIsLoading(true);
+      try {
+        const response = await userAPI.getCollections(user._id);
+        setCollections(response.data.collections || []);
+        return response.data.collections || [];
+      } catch (error) {
+        console.error('Failed to fetch collections:', error);
+        return [];
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    return [];
+  };
+
   // Load collections from API when user is signed in
   useEffect(() => {
-    const fetchCollections = async () => {
-      if (isSignedIn && user?._id) {
-        setIsLoading(true);
-        try {
-          const response = await userAPI.getCollections(user._id);
-          setCollections(response.data.collections || []);
-        } catch (error) {
-          console.error('Failed to fetch collections:', error);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    };
-
     fetchCollections();
   }, [isSignedIn, user]);
 
@@ -132,6 +136,7 @@ export const CollectionProvider = ({ children }) => {
       activeCollection,
       setActiveCollection,
       isLoading,
+      fetchCollections,
       createCollection,
       deleteCollection,
       updateCollectionName,

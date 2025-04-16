@@ -3,13 +3,21 @@ import { formatDistanceToNow } from 'date-fns';
 import { useCollections } from '../contexts/CollectionContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
+import { RefreshCw } from 'lucide-react';
 
 export default function Collections() {
   const [view, setView] = useState('collections');
   const [selectedCollection, setSelectedCollection] = useState(null);
-  const { collections, isLoading, createCollection, removeWritingFromCollection } = useCollections();
+  const { collections, isLoading, fetchCollections, createCollection, removeWritingFromCollection } = useCollections();
   const { user, isSignedIn } = useAuth();
   const { theme } = useTheme();
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await fetchCollections();
+    setRefreshing(false);
+  };
 
   const handleSelectCollection = (collection) => {
     setSelectedCollection(collection);
@@ -31,8 +39,23 @@ export default function Collections() {
   return (
     <div className="max-w-5xl mx-auto p-6">
       <div className="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 space-y-4">
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Your Collections</h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Organize and browse your saved writings</p>
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Your Collections</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Organize and browse your saved writings</p>
+          </div>
+          <button
+            onClick={handleRefresh}
+            disabled={isLoading || refreshing}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            title="Refresh collections"
+          >
+            <RefreshCw
+              size={20}
+              className={`text-gray-600 dark:text-gray-300 ${refreshing ? 'animate-spin' : ''}`}
+            />
+          </button>
+        </div>
 
         {view === 'writings' && (
           <button
