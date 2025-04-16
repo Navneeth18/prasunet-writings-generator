@@ -310,11 +310,4 @@ WriteCraft implements API key rotation to prevent hitting rate limits with the G
 To add your own API keys:
 1. Get API keys from the [Google AI Studio](https://makersuite.google.com/)
 2. Add them to the `.env` file in the server directory as shown in the Configuration section
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+   
