@@ -17,12 +17,7 @@ function getNextApiKey() {
     apiKeyStats[keyName].lastUsed = new Date().toISOString();
   }
 
-  console.log(`Using API key: ${keyName}`); // For debugging
-
-  // Log usage statistics every 10 requests
-  if (apiKeyStats.key1.uses % 10 === 0) {
-    logApiKeyUsage();
-  }
+  // Only log errors, not regular API key usage
 
   if (!apiKey) {
     console.error(`API key ${keyName} not found in environment variables`);
@@ -45,12 +40,14 @@ const apiKeyStats = {
   key5: { uses: 0, errors: 0, lastUsed: null },
 };
 
-// Function to log API key usage
+// Function to log API key usage - only used for debugging or when errors occur
 function logApiKeyUsage() {
-  console.log('API Key Usage Statistics:');
-  Object.entries(apiKeyStats).forEach(([key, stats]) => {
-    console.log(`${key}: ${stats.uses} uses, ${stats.errors} errors, Last used: ${stats.lastUsed || 'never'}`);
-  });
+  // This function is kept for debugging purposes but not used in normal operation
+  // It can be called manually when needed or from error handlers
+  return {
+    stats: apiKeyStats,
+    timestamp: new Date().toISOString()
+  };
 }
 
 async function generateGeminiResponse(promptData) {
@@ -444,7 +441,7 @@ async function generateGeminiResponse(promptData) {
     return responseText;
   } catch (error) {
     const keyName = `key${apiKeyCounter}`;
-    console.error(`Error with API key ${keyName}:`, error.message);
+    console.error(`API Error:`, error.message);
 
     // Update error statistics
     if (apiKeyStats[keyName]) {
