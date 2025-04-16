@@ -2,7 +2,7 @@
 
 WriteCraft is an AI-powered creative writing platform that helps users generate various types of content including poetry, short stories, quotes, social media captions, and more. The application uses Google's Gemini AI to create high-quality, customized content based on user preferences.
 
-![WriteCraft Logo](client/src/assets/logo.svg)
+
 
 ## Table of Contents
 
@@ -133,8 +133,8 @@ Alternatively, you can use the `render.yaml` file at the root of the repository 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/writecraft.git
-   cd writecraft
+   git clone https://github.com/Navneeth18/prasunet-writings-generator.git
+   cd prasunet-writings-generator
    ```
 
 2. Install dependencies for both client and server:
@@ -189,7 +189,7 @@ Or run them separately:
 ```bash
 # Start the server (from the server directory)
 cd server
-npm run dev
+nodemon server.js
 
 # Start the client (from the client directory)
 cd client
