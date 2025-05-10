@@ -3,6 +3,13 @@
 The application is deployed and can be accessed here:  
 🔗 [writings-generator-frontend.onrender.com](https://writings-generator-frontend.onrender.com)
 
+## 📘 Project Guide / Walkthrough
+
+For a complete project guide or walkthrough, refer to the following link:
+
+[Project Walkthrough (Google Drive)](https://drive.google.com/file/d/1J0QAh8_Yd7N91J8S7T3_BoL8Xa7ZPXZg/view?usp=drive_link)
+
+
 # WriteCraft - AI-Powered Creative Writing Platform
 
 WriteCraft is an AI-powered creative writing platform that helps users generate various types of content including poetry, short stories, quotes, social media captions, and more. The application uses Google's Gemini AI to create high-quality, customized content based on user preferences.
